@@ -45,5 +45,6 @@ base_teste = gerador_teste.flow_from_directory('F:/curso redes neurais/redes_con
                                                batch_size = 32,
                                                class_mode = 'binary')
 classificador.fit_generator(base_treinamento, steps_per_epoch = 4000 / 32,
-                            epochs = 5, validation_data = base_teste,
-                            validation_steps = 1000 /32)
+                            epochs = 10, validation_data = base_teste,
+                            validation_steps = 1000 / 32)
+
