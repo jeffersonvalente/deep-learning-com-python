@@ -3,6 +3,8 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D
 from tensorflow.keras.layers import Dense, Flatten, Dropout
 from keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.layers import BatchNormalization
+import numpy as np
+from keras.preprocessing import image
 
 classificador = Sequential()
 classificador.add(Conv2D(32, (3,3), input_shape=(64 , 64, 3),
@@ -48,3 +50,14 @@ classificador.fit_generator(base_treinamento, steps_per_epoch = 4000 / 32,
                             epochs = 10, validation_data = base_teste,
                             validation_steps = 1000 / 32)
 
+#adiciona imagem para ser testada
+imagem_teste = image.load_img('F:/curso redes neurais/redes_convolucionais/gatos_chachorros/dataset/test_set/gato/dog.3785.jpg',
+                             target_size = (64,64))
+imagem_teste = image.img_to_array(imagem_teste)
+imagem_teste /= 255
+imagem_teste = np.expand_dims(imagem_teste, axis = 0)
+previsao = classificador.predict(imagem_teste)
+if (previsao > 0.5):
+    print ('gato')
+else:
+    print ('cachorro')
