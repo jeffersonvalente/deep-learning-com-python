@@ -39,3 +39,11 @@ base_treinamento = gerador_treinamento.flow_from_directory('F:/curso redes neura
                                                            target_size = (64,64),
                                                            batch_size = 32,
                                                            class_mode = 'binary')
+
+base_teste = gerador_teste.flow_from_directory('F:/curso redes neurais/redes_convolucionais/gatos_chachorros/dataset/test_set',
+                                               target_size = (64,64),
+                                               batch_size = 32,
+                                               class_mode = 'binary')
+classificador.fit_generator(base_treinamento, steps_per_epoch = 4000 / 32,
+                            epochs = 5, validation_data = base_teste,
+                            validation_steps = 1000 /32)
